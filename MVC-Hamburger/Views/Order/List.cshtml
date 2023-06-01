@@ -1,0 +1,76 @@
+﻿@model (IEnumerable<MVC_Hamburger.Models.Menu> m, IEnumerable<MVC_Hamburger.Models.ExtraMaterial> e)
+
+
+@{
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h1>Basket</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+
+            </th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.e)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (User.IsInRole("User"))
+                    {
+                        <a href="@Url.Action("DeleteExtraMaterial", "Order", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                    }
+                </td>
+
+            </tr>
+        }
+        @foreach (var item in Model.m)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (User.IsInRole("User"))
+                    {
+                        <a href="@Url.Action("DeleteFood", "Order", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+        <tr>
+           
+            <td>
+                Total Price
+            </td>
+            <td>
+                @(Model.e.Sum(x => x.Price) + Model.m.Sum(x => x.Price))
+            </td>
+            <td>
+                <a href="@Url.Action("CompleteToOrder","Order")" class="btn btn-success">Complete To Order</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

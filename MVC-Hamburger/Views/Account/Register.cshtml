@@ -1,0 +1,47 @@
+﻿@model UserVM
+<h2 class="fs-1 text-white">SIGN UP</h2>
+<hr />
+
+<form asp-action="Register">
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label text-white"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-white"></span>
+        <br />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EMail" class="form-label text-white"></label>
+        <input asp-for="EMail" class="form-control" />
+        <span asp-validation-for="EMail" class="text-white"></span>
+        <br />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label text-white"></label>
+        <input asp-for="Password" class="form-control">
+        <span asp-validation-for="Password" class="text-white"></span>
+        <br />
+        <small id="password-requirements" class="text-white" style="display: none;">Your password must meet the following criteria:</small>
+        <ul id="password-requirements-list" class="text-white" style="display: none;">
+            <li>At least 8 characters long</li>
+            <li>Contain at least one uppercase letter</li>
+            <li>Contain at least one lowercase letter</li>
+            <li>Contain at least one digit</li>
+            <li>Contain at least one special character</li>
+        </ul>
+    </div>
+    <a type="submit" class="btn btn-primary" href="@Url.Action("LogIn", "Account")"><span class="text-white">Create Account</span></a>
+</form>
+
+<script>
+    // Şifre alanının odaklanması durumunda şartları göster
+    document.getElementById('Password').addEventListener('focus', function () {
+        document.getElementById('password-requirements').style.display = 'block';
+        document.getElementById('password-requirements-list').style.display = 'block';
+    });
+
+    // Şifre alanının odak dışı kalması durumunda şartları gizle
+    document.getElementById('Password').addEventListener('blur', function () {
+        document.getElementById('password-requirements').style.display = 'none';
+        document.getElementById('password-requirements-list').style.display = 'none';
+    });
+</script>

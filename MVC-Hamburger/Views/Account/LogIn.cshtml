@@ -1,0 +1,52 @@
+﻿
+@model LoginVm
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    .form-outline {
+        color: white;
+    }
+
+    .form-label {
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: white;
+        color: black;
+    }
+
+    .btn-link {
+        color: white;
+    }
+
+    .btn-floating i {
+        color: white;
+    }
+</style>
+
+<p class="fs-1">Log In</p>
+
+<form asp-action="LogIn" asp-route-ReturnUrl="/Home/Index" method="post">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <input type="text" asp-for="UserName" class="form-control" />
+        <label class="form-label">User Name</label>
+    </div>
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+        <input type="password" asp-for="Password" class="form-control" />
+        <label class="form-label">Password</label>
+    </div>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4" asp-route-returnUrl="/Menu/List">Sign in</button>
+    <!-- Register buttons -->
+    <div class="text-center">
+        <p>Not a member? <a class="btn btn-primary" href="@Url.Action("Register", "Account")">Register</a></p>
+       
+    </div>
+</form>

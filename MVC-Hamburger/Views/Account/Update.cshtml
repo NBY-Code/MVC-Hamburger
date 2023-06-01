@@ -1,0 +1,25 @@
+﻿@model UserUpdateDTO
+
+
+<form asp-action="Update">
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName"></span>
+        <br />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EMail" class="form-label"></label>
+        <input asp-for="EMail" class="form-control" />
+        <span asp-validation-for="EMail"></span>
+        <br />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" value="">
+        <span asp-validation-for="Password"></span>
+        <br />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-outline-primary"><span>Update User</span></button>
+</form>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVC_Hamburger.Models.ExtraMaterial>
+@{
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+               @* <img src="@item.Photo" class="card-img-top" alt="Product Image">*@
+                <img src="~/Assest/images/@item.Photo" class="card-img-top" alt="Product Image">
+                <div class="card border-dark mb-3">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">
+
+                        Price: @item.Price
+                    </p>
+                    @if (User.IsInRole("User"))
+                    {
+                        <a type="submit" class="btn btn-sm btn-success" asp-route-id="@item.Id" asp-action="AddBasketExtraMaterial" asp-controller="Order">add to Basket</a>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Delete", "ExtraMaterial", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                        <a asp-controller="ExtraMaterial" asp-action="Edit" asp-route-id="@item.Id " class="btn btn-success">Edit</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<div>
+    <a href="@Url.Action("List", "Menu" ) " class="btn btn-primary">VIEW MORE </a>
+    <a href="@Url.Action("List", "Order" ) " class="btn btn-danger">Go To Basket</a>
+    @if (User.IsInRole("Admin"))
+    {
+
+        <a asp-controller="ExtraMaterial" asp-action="Create" class="btn btn-primary">Create</a>
+    }
+</div>
